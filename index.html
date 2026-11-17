@@ -1,389 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Christos Vergados – Mechanical Engineer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #050816;
-      --bg-light: #0b1120;
-      --accent: #2563eb;
-      --accent-soft: rgba(37,99,235,0.15);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card: #020617;
-      --radius-xl: 18px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Inter", sans-serif;
-      background: radial-gradient(circle at top, #1e293b, #020617 55%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 32px 20px 48px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 32px;
-    }
-
-    header .logo {
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    header .pill {
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.35);
-      padding: 4px 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) 180px;
-      gap: 32px;
-      align-items: center;
-      margin-bottom: 36px;
-    }
-
-    .hero-text h1 {
-      font-size: clamp(32px, 4vw, 40px);
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    .hero-text p.subtitle {
-      color: var(--muted);
-      font-size: 15px;
-      margin-bottom: 16px;
-    }
-
-    .hero-text p.description {
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 540px;
-      line-height: 1.5;
-    }
-
-    .hero-photo {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-photo-inner {
-      width: 170px;
-      height: 170px;
-      border-radius: 999px;
-      border: 3px solid rgba(148,163,184,0.6);
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(15,23,42,0.9);
-      background: #020617;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* replace with your real image later */
-    .hero-photo-inner span {
-      padding: 0 18px;
-      text-align: center;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 9px 16px;
-      font-size: 14px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.15s ease, transform 0.15s ease,
-        box-shadow 0.15s ease, border-color 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #f9fafb;
-      box-shadow: 0 12px 30px rgba(37,99,235,0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(37,99,235,0.42);
-    }
-
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(148,163,184,0.4);
-      color: var(--text);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15,23,42,1);
-      border-color: rgba(148,163,184,0.8);
-    }
-
-    .btn-icon {
-      font-size: 16px;
-    }
-
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .card {
-      background: linear-gradient(135deg, #020617, #020617 60%, #020617);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.2);
-      padding: 18px 18px 16px;
-      box-shadow: 0 18px 45px rgba(15,23,42,0.75);
-    }
-
-    .card h2 {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .pill-tag {
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.35);
-      padding: 4px 10px;
-      font-size: 11px;
-      color: var(--muted);
-      background: rgba(15,23,42,0.9);
-    }
-
-    .section-title {
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .footer {
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(148,163,184,0.22);
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .social-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    .social-row a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .social-row a:hover {
-      color: var(--text);
-      text-decoration: underline;
-    }
-
-    @media (max-width: 720px) {
-      .page { padding-top: 22px; }
-      header { margin-bottom: 22px; }
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-        text-align: left;
-      }
-      .hero-photo {
-        order: -1;
-        justify-content: flex-start;
-      }
-      .hero-photo-inner {
-        width: 140px;
-        height: 140px;
-      }
-      .hero-text p.description { max-width: none; }
-      .hero-actions { justify-content: flex-start; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header>
-      <div class="logo">Christos Vergados</div>
-      <div class="pill">Mechanical Engineer · Entrepreneurship Talks</div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-text">
-          <h1>Christos Vergados</h1>
-          <p class="subtitle">
-            M.Sc. Mechanical Engineer &nbsp;·&nbsp; Co-Founder of Entrepreneurship Talks
-          </p>
-          <p class="description">
-            Early-career mechanical engineer with experience in production systems and
-            digital twins, combining engineering rigor with entrepreneurship and
-            community-building through <strong>Entrepreneurship Talks</strong>.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:christos@cvergados.com">
-              <span class="btn-icon">✉️</span>
-              <span>Message me</span>
-            </a>
-            <a class="btn btn-ghost"
-               href="https://www.linkedin.com/in/christos-vergados/"
-               target="_blank" rel="noopener noreferrer">
-              <span class="btn-icon">💼</span>
-              <span>Let’s discuss</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-photo">
-          <div class="hero-photo-inner">
-            <!-- Replace with your real headshot later -->
-            <span>Place professional headshot here</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- QUICK SUMMARY -->
-      <section style="margin-bottom: 28px;">
-        <div class="stack-grid">
-          <article class="card">
-            <h2>Snapshot</h2>
-            <p>
-              Based in Greece, working at the intersection of <strong>mechanical
-              engineering</strong>, <strong>production systems</strong> and
-              <strong>entrepreneurship</strong>. Interested in hybrid cells, digital
-              twins and industrial IoT.
-            </p>
-          </article>
-
-          <article class="card">
-            <h2>Focus areas</h2>
-            <p>Process & production systems · Digital twins · Industry 4.0 ·
-               Entrepreneurship & startups.</p>
-            <div class="pill-row">
-              <span class="pill-tag">Hybrid Cell Digital Twin</span>
-              <span class="pill-tag">Additive Manufacturing</span>
-              <span class="pill-tag">IIoT</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- EXPERIENCE / PROJECTS -->
-      <section style="margin-bottom: 26px;">
-        <div class="section-title">Experience & Projects</div>
-        <div class="stack-grid">
-          <article class="card">
-            <h2>Hybrid Cell Digital Twin</h2>
-            <p>
-              Thesis project on the design and development of a hybrid cell digital
-              twin, with focus on macroscale analysis of production, cost and
-              process performance.
-            </p>
-          </article>
-
-          <article class="card">
-            <h2>Entrepreneurship Talks NGO</h2>
-            <p>
-              Co-founder of a youth-led non-profit that runs entrepreneurship-focused
-              podcasts and educational trips to startup ecosystems across Europe.
-            </p>
-          </article>
-
-          <article class="card">
-            <h2>Industry experience</h2>
-            <p>
-              Hands-on experience in large-scale production environments
-              (e.g. beverage industry), with exposure to maintenance, operations and
-              continuous improvement.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section>
-        <div class="section-title">Contact</div>
-        <div class="card">
-          <p>
-            For opportunities in mechanical engineering, digital twins or
-            entrepreneurship initiatives, feel free to reach out.
-          </p>
-          <div class="pill-row" style="margin-top: 12px;">
-            <span class="pill-tag">christos@cvergados.com</span>
-            <span class="pill-tag">vergados@entrepreneurshiptalks.org</span>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div>© <span id="year"></span> Christos Vergados</div>
-      <div class="social-row">
-        <a href="https://www.linkedin.com/in/christos-vergados/" target="_blank">LinkedIn</a>
-        <a href="https://open.spotify.com/" target="_blank">Spotify</a>
-        <a href="mailto:christos@cvergados.com">Email</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christos Vergados — Engineering &amp; Entrepreneurship</title>
+<meta name="description" content="Mechanical Project Engineer at METLEN and Co-founder of Entrepreneurship Talks. Selected work in international energy infrastructure, entrepreneurship and engineering.">
+<meta name="theme-color" content="#f5f3ee">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Christos Vergados">
+<meta property="og:title" content="Christos Vergados — Engineering &amp; Entrepreneurship">
+<meta property="og:description" content="Mechanical Project Engineer at METLEN and Co-founder of Entrepreneurship Talks. Selected work in international energy infrastructure, entrepreneurship and engineering.">
+<link rel="canonical" href="https://cvergados.com/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+</head><body><a class="skip" href="#main">Skip to content</a><div class="header-wrap"><header class="container site-header">
+ <a href="index.html" class="brand" aria-label="Christos Vergados home">cv<i>.</i></a>
+ <nav class="nav" aria-label="Primary navigation">
+ <a href="work.html">Selected work</a>
+ <a href="about.html">About</a>
+ <a href="index.html#experience">Experience</a>
+ <a href="index.html#contact">Contact</a>
+ </nav>
+ <a class="header-action" href="index.html#contact"><span>Let's connect</span><span class="arrow" aria-hidden="true">↗</span></a>
+ </header></div><main id="main">
+<section class="container hero" aria-labelledby="hero-title"><div class="hero-copy">
+<div class="eyebrow kicker-line">Christos Vergados <span aria-hidden="true">/</span> Athens, Greece</div>
+<h1 class="hero-title" id="hero-title">Engineering <em>ideas</em><br>into impact.</h1>
+<p class="hero-description">I’m a Mechanical Project Engineer at METLEN and Co-founder &amp; Managing Director of Entrepreneurship Talks. My work brings together technical execution, international projects, and the people behind them.</p>
+<div class="hero-subline"><span>EPC energy infrastructure</span><span class="small-dot"></span><span>Entrepreneurship</span><span class="small-dot"></span><span>Europe</span></div>
+<div class="hero-cta"><a class="btn-primary" href="#work">Explore selected work <span aria-hidden="true">↗</span></a><a class="underlink" href="about.html">More about me</a></div>
+</div><div class="hero-visual" aria-label="Abstract architectural monogram inspired by industrial modernism"><div class="arch"><div class="arch-ring"></div><div class="arch-ring two"></div><span class="arch-monogram" aria-hidden="true">cv</span><!-- Optional: add a licensed portrait as assets/portrait.jpg and uncomment the line below. --><!-- <img class="arch-img" src="assets/portrait.jpg" alt="Portrait of Christos Vergados"> --></div><span class="hero-side-note">Engineering · Organisations · People</span><div class="hero-chip"><span class="light" aria-hidden="true"></span><div><strong>Based in Athens</strong><small>Working across borders</small></div></div></div>
+</section>
+<div class="facts-band"><div class="container facts-inner"><span>Mechanical engineering</span><i></i><span>International infrastructure</span><i></i><span>Entrepreneurship</span><i></i><span>Cross-border collaboration</span></div></div>
+<section class="container section" id="work"><div class="section-lead"><span class="section-label">01 / Selected work</span><h2 class="section-heading">Work in <em>practice.</em></h2></div>
+<div class="featured-grid"><a class="work-card" href="projects/adamow.html"><div class="work-visual dark"><span class="visual-label">Energy infrastructure</span><svg viewBox="0 0 620 320" fill="none" role="img" aria-label="Abstract line drawing of industrial energy infrastructure"><g stroke="#719890" stroke-width=".8" opacity=".27"><path d="M0 275H620M0 235H620M0 195H620M0 155H620M0 115H620"/><path d="M30 0V320M90 0V320M150 0V320M210 0V320M270 0V320M330 0V320M390 0V320M450 0V320M510 0V320M570 0V320"/></g><g stroke="#c5dac8" stroke-width="1.5" opacity=".9"><path d="M79 269V152H136V269M170 269V82H223V269M255 269V120H308V269M355 269V48H402V269M443 269V166H525V269M48 269H565"/><path d="M170 84L151 56M223 84L243 56M355 49L333 24M402 49L426 24"/><path d="M79 178H136M170 123H223M170 158H223M170 201H223M255 157H308M355 96H402M355 147H402M443 203H525"/><path d="M136 239H170M223 215H255M308 247H355M402 224H443"/></g><g stroke="#98bdb0" stroke-dasharray="3 7"><path d="M115 152V85H355M400 146H513V120"/></g><path d="M65 272H560" stroke="#e4efdb" stroke-width="2"/><circle cx="563" cy="272" r="3" fill="#e4efdb"/></svg></div><div class="work-info"><div class="work-info-top"><span class="work-kicker">METLEN / POLAND</span><span class="work-arrow" aria-hidden="true">↗</span></div><h3>Adamów CCGT — project engineering</h3><p>Engineering, procurement and construction interfaces on a 560 MW net combined-cycle power project.</p></div></a><a class="work-card" href="projects/entrepreneurship-talks.html"><div class="work-visual sage"><span class="visual-label">Entrepreneurship & people</span><svg viewBox="0 0 620 320" fill="none" role="img" aria-label="Abstract network of people and connections"><g stroke="#e7efe5" stroke-width="1.5" opacity=".65"><path d="M110 247L219 137L360 185L475 90M219 137L173 52M219 137L361 55M360 185L500 266M360 185L291 277M475 90L500 266"/><circle cx="110" cy="247" r="34"/><circle cx="219" cy="137" r="53"/><circle cx="360" cy="185" r="47"/><circle cx="475" cy="90" r="60"/><circle cx="173" cy="52" r="17"/><circle cx="361" cy="55" r="18"/><circle cx="500" cy="266" r="19"/><circle cx="291" cy="277" r="15"/></g><g fill="#f0f5ea"><circle cx="110" cy="247" r="7"/><circle cx="219" cy="137" r="9"/><circle cx="360" cy="185" r="9"/><circle cx="475" cy="90" r="11"/><circle cx="173" cy="52" r="4"/><circle cx="361" cy="55" r="4"/><circle cx="500" cy="266" r="4"/><circle cx="291" cy="277" r="4"/></g></svg></div><div class="work-info"><div class="work-info-top"><span class="work-kicker">ENTREPRENEURSHIP TALKS</span><span class="work-arrow" aria-hidden="true">↗</span></div><h3>Building an organisation</h3><p>Co-founding a nonprofit connecting young people with entrepreneurship, international partnerships and European opportunities.</p></div></a></div><div class="work-extra">
+<div class="mini-feature"><span class="mini-number">03</span><div><h3>Digital twin &amp; robotic manufacturing</h3><p>A hybrid manufacturing-cell digital twin developed as my engineering thesis at the University of Patras.</p><a href="projects/digital-twin.html">Explore the project ↗</a></div></div>
+<div class="mini-feature"><span class="mini-number">04</span><div><h3>Air Cargo Challenge</h3><p>Structural design and collaborative engineering within the EUROAVIA M.ACH team, 13th of 30 at the 2024 competition.</p><a href="projects/air-cargo.html">Explore the project ↗</a></div></div>
+</div><p class="section-footnote">The visuals are abstract editorial illustrations, not proprietary engineering drawings or documentation.</p>
+</section>
+<section class="dark-section" aria-labelledby="about-preview"><div class="container dark-inner"><span class="section-label">02 / Perspective</span><div><h2 class="big-copy" id="about-preview">An engineering foundation, with an interest in the <em>wider system</em> — the people, decisions and organisations that turn plans into reality.</h2><div class="dark-blurbs"><p>My work at METLEN connects technical engineering with procurement and construction, including time spent with project teams on site in Poland.</p><p>Alongside engineering, Entrepreneurship Talks has been a different kind of learning environment: building a team, developing partnerships and shaping international programmes.</p></div><a class="dark-link" href="about.html">About my background <span aria-hidden="true">↗</span></a></div></div></section>
+<section class="container section" id="experience"><div class="section-lead"><span class="section-label">03 / Background</span><h2 class="section-heading">A trajectory shaped by <em>practice.</em></h2></div><div class="timeline">
+<div class="timeline-row"><span class="timeline-year">2026 — Present</span><h3>METLEN</h3><p>Mechanical Project Engineering · EPC power projects<br>Engineering, technical procurement and construction interfaces</p></div>
+<div class="timeline-row"><span class="timeline-year">2022 — Present</span><h3>Entrepreneurship Talks</h3><p>Co-founder &amp; Managing Director<br>Community, international partnerships and European programmes</p></div>
+<div class="timeline-row"><span class="timeline-year">2025</span><h3>University of Patras</h3><p>Diploma, Mechanical &amp; Aeronautical Engineering<br>Thesis in digital twin and robotic manufacturing</p></div>
+<div class="timeline-row"><span class="timeline-year">Earlier work</span><h3>Manufacturing &amp; aerospace</h3><p>Athenian Brewery manufacturing experience · EUROAVIA air-cargo UAV design</p></div>
+</div></section>
+<section class="contact-section" id="contact"><div class="container"><span class="section-label">04 / Contact</span><h2 class="contact-title">A good project starts with a <em>conversation.</em></h2><div class="contact-actions"><a class="btn-primary" href="https://www.linkedin.com/in/christos-vergados-/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">↗</span></a><a class="underlink" href="work.html">Explore the work</a></div><p class="small-disclaimer">Professional enquiries &amp; collaborations. A direct email address can be added once confirmed.</p></div></section>
+</main><footer class="container footer"><span>© 2026 Christos Vergados</span><span>Engineering · Entrepreneurship · International collaboration</span><div class="footer-links"><a href="https://www.linkedin.com/in/christos-vergados-/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="work.html">Work</a><a href="index.html">Back to home ↑</a></div></footer></body></html>
